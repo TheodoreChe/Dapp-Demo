@@ -1,2 +1,2 @@
-# Dapp-Metamask-001
+# Dapp-Metamask
 A Simple Dapp
