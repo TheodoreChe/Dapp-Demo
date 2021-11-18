@@ -1,0 +1,1 @@
+export { MinterComponent as default } from './Minter.component'
