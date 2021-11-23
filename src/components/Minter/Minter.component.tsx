@@ -1,35 +1,35 @@
 import { FC, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { WalletButtonComponent } from '../WalletButton/WalletButton.component'
 import { MinterForm } from './MinterForm.component'
 import styles from './Minter.module.scss'
-import { WalletButtonComponent } from '../WalletButton/WalletButton.component'
 
 export const MinterComponent: FC = () => {
-  const [status, setStatus] = useState('')
-  const [description, setDescription] = useState('')
-  const [name, setName] = useState('')
-  const [url, setURL] = useState('')
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+  console.log(errors)
 
-  const connectWalletPressed = async () => {
-    //TODO: implement
-  }
-
-  const onMintPressed = async () => {
-    //TODO: implement
+  const onSubmit = (data: { Url: string; Name: string; Description: string }) => {
+    // onMintPressed
+    console.log('data', data)
   }
 
   return (
     <div className={styles.wrapper}>
-      <WalletButtonComponent />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h1>NFT Minter</h1>
+        <p>Simply add your asset's link, name, and description, then press "Mint."</p>
 
-      <br />
-      <h1>🧙‍♂️ Alchemy NFT Minter</h1>
-      <p>Simply add your asset's link, name, and description, then press "Mint."</p>
+        <MinterForm register={register} />
 
-      <MinterForm setDescription={setDescription} setName={setName} setURL={setURL} />
-
-      <button className={styles.button} onClick={onMintPressed}>
-        Mint NFT
-      </button>
+        <div className={styles.buttonsSection}>
+          <input type="submit" className={styles.mintButton} value="Mint NFT" />
+          <WalletButtonComponent className={styles.walletButton} />
+        </div>
+      </form>
     </div>
   )
 }

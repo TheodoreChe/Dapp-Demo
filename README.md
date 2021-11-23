@@ -1,2 +1,2 @@
-# Dapp-Metamask
+# Demo Minter Dapp
 A Simple Dapp

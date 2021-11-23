@@ -1,28 +1,44 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
+import { useForm } from 'react-hook-form'
+import styles from './Minter.module.scss'
 
 type Props = {
-  setDescription: (value: string) => void
-  setName: (value: string) => void
-  setURL: (value: string) => void
+  register: Function
 }
 
-export const MinterForm: FC<Props> = ({ setDescription, setName, setURL }) => {
+export const MinterForm: FC<Props> = ({ register }) => {
   return (
-    <form>
-      <h2>🖼 Link to asset: </h2>
-      <input
-        type="text"
-        placeholder="e.g. https://gateway.pinata.cloud/ipfs/<hash>"
-        onChange={(event) => setURL(event.target.value)}
-      />
-      <h2>🤔 Name: </h2>
-      <input type="text" placeholder="e.g. My first NFT!" onChange={(event) => setName(event.target.value)} />
-      <h2>✍️ Description: </h2>
-      <input
-        type="text"
-        placeholder="e.g. Even cooler than cryptokitties ;)"
-        onChange={(event) => setDescription(event.target.value)}
-      />
-    </form>
+    <>
+      <div className={styles.field}>
+        <h2>🖼 Link to asset</h2>
+        <input
+          className={styles.input}
+          autocomplete="off"
+          type="text"
+          placeholder="e.g. https://gateway.pinata.cloud/ipfs/<hash>"
+          {...register('Url', {})}
+        />
+      </div>
+      <div className={styles.field}>
+        <h2>🤔 Name</h2>
+        <input
+          className={styles.input}
+          autocomplete="off"
+          type="text"
+          placeholder="e.g. My NFT!"
+          {...register('Name', {})}
+        />
+      </div>
+      <div className={styles.field}>
+        <h2>✍️ Description</h2>
+        <input
+          className={styles.input}
+          autocomplete="off"
+          type="text"
+          placeholder="e.g. Even cooler than cryptokitties ;)"
+          {...register('Description', {})}
+        />
+      </div>
+    </>
   )
 }

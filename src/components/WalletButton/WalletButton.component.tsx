@@ -1,9 +1,12 @@
 import { FC, useContext } from 'react'
 import { WalletContext } from '../../state'
-import styles from './WalletButton.module.scss'
 import { connectWallet } from '../../lib'
 
-export const WalletButtonComponent: FC = () => {
+type Props = {
+  className?: string
+}
+
+export const WalletButtonComponent: FC<Props> = ({ className }) => {
   const { walletAddress, setWalletAddress } = useContext(WalletContext)
 
   const connectWalletPressed = async () => {
@@ -12,11 +15,11 @@ export const WalletButtonComponent: FC = () => {
   }
 
   return (
-    <button onClick={connectWalletPressed} className={styles.button}>
+    <button onClick={connectWalletPressed} className={className}>
       {walletAddress && walletAddress.length > 0 ? (
         'Connected: ' + String(walletAddress).substring(0, 6) + '...' + String(walletAddress).substring(38)
       ) : (
-        <span>Connect Wallet</span>
+        <span>🦊 Connect Wallet</span>
       )}
     </button>
   )
