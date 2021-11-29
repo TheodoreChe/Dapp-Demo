@@ -30,16 +30,23 @@
   border-radius: .4rem;
   color: #fff;
   font-size: 1rem;
+  transition: background .2s ease-in-out;
 }
 
 .walletButton{
   @include flexButton;
+  &:hover {
+    background: rgba(255, 255, 255,.07);
+  }
 }
 
 .mintButton{
   @include flexButton;
   margin-right: -1px;
   background: #4b00b7;
+  &:hover {
+    background: #3c0091;
+  }
 }
 
 .field{
@@ -63,6 +70,6 @@
   color: #fff;
   font-size: 1rem;
   &:focus {
-    background: #2a2a2a;
+    background: rgba(255, 255, 255,.07);
   }
 }
